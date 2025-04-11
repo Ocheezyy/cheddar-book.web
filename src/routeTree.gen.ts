@@ -11,16 +11,47 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TermsOfServiceImport } from './routes/terms-of-service'
+import { Route as PrivacyPolicyImport } from './routes/privacy-policy'
+import { Route as CookiePolicyImport } from './routes/cookie-policy'
 import { Route as IndexImport } from './routes/index'
+import { Route as SignUpIndexImport } from './routes/sign-up/index'
 import { Route as PricingIndexImport } from './routes/pricing/index'
+import { Route as LoginIndexImport } from './routes/login/index'
 import { Route as HowItWorksIndexImport } from './routes/how-it-works/index'
+import { Route as ForgotPasswordIndexImport } from './routes/forgot-password/index'
 import { Route as ForBusinessesIndexImport } from './routes/for-businesses/index'
+import { Route as ProvidersProviderIdImport } from './routes/providers/$providerId'
 
 // Create/Update Routes
+
+const TermsOfServiceRoute = TermsOfServiceImport.update({
+  id: '/terms-of-service',
+  path: '/terms-of-service',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PrivacyPolicyRoute = PrivacyPolicyImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CookiePolicyRoute = CookiePolicyImport.update({
+  id: '/cookie-policy',
+  path: '/cookie-policy',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SignUpIndexRoute = SignUpIndexImport.update({
+  id: '/sign-up/',
+  path: '/sign-up/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -30,15 +61,33 @@ const PricingIndexRoute = PricingIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const LoginIndexRoute = LoginIndexImport.update({
+  id: '/login/',
+  path: '/login/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const HowItWorksIndexRoute = HowItWorksIndexImport.update({
   id: '/how-it-works/',
   path: '/how-it-works/',
   getParentRoute: () => rootRoute,
 } as any)
 
+const ForgotPasswordIndexRoute = ForgotPasswordIndexImport.update({
+  id: '/forgot-password/',
+  path: '/forgot-password/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const ForBusinessesIndexRoute = ForBusinessesIndexImport.update({
   id: '/for-businesses/',
   path: '/for-businesses/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProvidersProviderIdRoute = ProvidersProviderIdImport.update({
+  id: '/providers/$providerId',
+  path: '/providers/$providerId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,11 +102,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/cookie-policy': {
+      id: '/cookie-policy'
+      path: '/cookie-policy'
+      fullPath: '/cookie-policy'
+      preLoaderRoute: typeof CookiePolicyImport
+      parentRoute: typeof rootRoute
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyImport
+      parentRoute: typeof rootRoute
+    }
+    '/terms-of-service': {
+      id: '/terms-of-service'
+      path: '/terms-of-service'
+      fullPath: '/terms-of-service'
+      preLoaderRoute: typeof TermsOfServiceImport
+      parentRoute: typeof rootRoute
+    }
+    '/providers/$providerId': {
+      id: '/providers/$providerId'
+      path: '/providers/$providerId'
+      fullPath: '/providers/$providerId'
+      preLoaderRoute: typeof ProvidersProviderIdImport
+      parentRoute: typeof rootRoute
+    }
     '/for-businesses/': {
       id: '/for-businesses/'
       path: '/for-businesses'
       fullPath: '/for-businesses'
       preLoaderRoute: typeof ForBusinessesIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/forgot-password/': {
+      id: '/forgot-password/'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordIndexImport
       parentRoute: typeof rootRoute
     }
     '/how-it-works/': {
@@ -67,11 +151,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HowItWorksIndexImport
       parentRoute: typeof rootRoute
     }
+    '/login/': {
+      id: '/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/pricing/': {
       id: '/pricing/'
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/sign-up/': {
+      id: '/sign-up/'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -81,47 +179,116 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cookie-policy': typeof CookiePolicyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
+  '/providers/$providerId': typeof ProvidersProviderIdRoute
   '/for-businesses': typeof ForBusinessesIndexRoute
+  '/forgot-password': typeof ForgotPasswordIndexRoute
   '/how-it-works': typeof HowItWorksIndexRoute
+  '/login': typeof LoginIndexRoute
   '/pricing': typeof PricingIndexRoute
+  '/sign-up': typeof SignUpIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cookie-policy': typeof CookiePolicyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
+  '/providers/$providerId': typeof ProvidersProviderIdRoute
   '/for-businesses': typeof ForBusinessesIndexRoute
+  '/forgot-password': typeof ForgotPasswordIndexRoute
   '/how-it-works': typeof HowItWorksIndexRoute
+  '/login': typeof LoginIndexRoute
   '/pricing': typeof PricingIndexRoute
+  '/sign-up': typeof SignUpIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/cookie-policy': typeof CookiePolicyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
+  '/providers/$providerId': typeof ProvidersProviderIdRoute
   '/for-businesses/': typeof ForBusinessesIndexRoute
+  '/forgot-password/': typeof ForgotPasswordIndexRoute
   '/how-it-works/': typeof HowItWorksIndexRoute
+  '/login/': typeof LoginIndexRoute
   '/pricing/': typeof PricingIndexRoute
+  '/sign-up/': typeof SignUpIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/for-businesses' | '/how-it-works' | '/pricing'
+  fullPaths:
+    | '/'
+    | '/cookie-policy'
+    | '/privacy-policy'
+    | '/terms-of-service'
+    | '/providers/$providerId'
+    | '/for-businesses'
+    | '/forgot-password'
+    | '/how-it-works'
+    | '/login'
+    | '/pricing'
+    | '/sign-up'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/for-businesses' | '/how-it-works' | '/pricing'
-  id: '__root__' | '/' | '/for-businesses/' | '/how-it-works/' | '/pricing/'
+  to:
+    | '/'
+    | '/cookie-policy'
+    | '/privacy-policy'
+    | '/terms-of-service'
+    | '/providers/$providerId'
+    | '/for-businesses'
+    | '/forgot-password'
+    | '/how-it-works'
+    | '/login'
+    | '/pricing'
+    | '/sign-up'
+  id:
+    | '__root__'
+    | '/'
+    | '/cookie-policy'
+    | '/privacy-policy'
+    | '/terms-of-service'
+    | '/providers/$providerId'
+    | '/for-businesses/'
+    | '/forgot-password/'
+    | '/how-it-works/'
+    | '/login/'
+    | '/pricing/'
+    | '/sign-up/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CookiePolicyRoute: typeof CookiePolicyRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  TermsOfServiceRoute: typeof TermsOfServiceRoute
+  ProvidersProviderIdRoute: typeof ProvidersProviderIdRoute
   ForBusinessesIndexRoute: typeof ForBusinessesIndexRoute
+  ForgotPasswordIndexRoute: typeof ForgotPasswordIndexRoute
   HowItWorksIndexRoute: typeof HowItWorksIndexRoute
+  LoginIndexRoute: typeof LoginIndexRoute
   PricingIndexRoute: typeof PricingIndexRoute
+  SignUpIndexRoute: typeof SignUpIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CookiePolicyRoute: CookiePolicyRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  TermsOfServiceRoute: TermsOfServiceRoute,
+  ProvidersProviderIdRoute: ProvidersProviderIdRoute,
   ForBusinessesIndexRoute: ForBusinessesIndexRoute,
+  ForgotPasswordIndexRoute: ForgotPasswordIndexRoute,
   HowItWorksIndexRoute: HowItWorksIndexRoute,
+  LoginIndexRoute: LoginIndexRoute,
   PricingIndexRoute: PricingIndexRoute,
+  SignUpIndexRoute: SignUpIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -135,22 +302,50 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/cookie-policy",
+        "/privacy-policy",
+        "/terms-of-service",
+        "/providers/$providerId",
         "/for-businesses/",
+        "/forgot-password/",
         "/how-it-works/",
-        "/pricing/"
+        "/login/",
+        "/pricing/",
+        "/sign-up/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
+    "/cookie-policy": {
+      "filePath": "cookie-policy.tsx"
+    },
+    "/privacy-policy": {
+      "filePath": "privacy-policy.tsx"
+    },
+    "/terms-of-service": {
+      "filePath": "terms-of-service.tsx"
+    },
+    "/providers/$providerId": {
+      "filePath": "providers/$providerId.tsx"
+    },
     "/for-businesses/": {
       "filePath": "for-businesses/index.tsx"
+    },
+    "/forgot-password/": {
+      "filePath": "forgot-password/index.tsx"
     },
     "/how-it-works/": {
       "filePath": "how-it-works/index.tsx"
     },
+    "/login/": {
+      "filePath": "login/index.tsx"
+    },
     "/pricing/": {
       "filePath": "pricing/index.tsx"
+    },
+    "/sign-up/": {
+      "filePath": "sign-up/index.tsx"
     }
   }
 }
